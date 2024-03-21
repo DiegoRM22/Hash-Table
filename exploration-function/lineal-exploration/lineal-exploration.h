@@ -8,9 +8,12 @@
 template<class Key>
 class LinealExploration : public ExplorationFunction<Key> {
  public:
-  LinealExploration() {}
+  LinealExploration(unsigned tableSize) {
+    this->tableSize_ = tableSize;
+  }
   unsigned operator()(const Key& key, unsigned iteration) const override {
-    return iteration;
+    iteration += 1;
+    return iteration % this->tableSize_;
   }
 };
 

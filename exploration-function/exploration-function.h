@@ -8,6 +8,8 @@ class ExplorationFunction {
  public:
   ExplorationFunction() {}
   virtual unsigned operator()(const Key& key, unsigned iteration) const = 0;
+ protected: 
+  unsigned tableSize_;
 };
 
 #endif

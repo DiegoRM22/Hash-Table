@@ -8,9 +8,15 @@
 template<class Key>
 class CuadraticExploration : public ExplorationFunction<Key> {
  public:
-  CuadraticExploration();
+  CuadraticExploration(unsigned tableSize) {
+    this->tableSize_ = tableSize;
+  }
   unsigned operator()(const Key& key, unsigned iteration) const override {
-    return iteration * iteration;
+    if (iteration * iteration < this->tableSize_) {
+      return iteration * iteration;
+    } else {
+      return (iteration * iteration) % this->tableSize_;
+    }
   }
 };
 

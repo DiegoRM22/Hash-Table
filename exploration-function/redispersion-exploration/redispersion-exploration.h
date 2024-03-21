@@ -7,10 +7,12 @@
 template<class Key>
 class RedispersionExploration : public ExplorationFunction<Key> {
  public:
-  RedispersionExploration(const PseudoRandomFunction<Key>& pseudoRandomFunction) : 
-                              pseudoRandomFunction_(pseudoRandomFunction) {}
+  RedispersionExploration(const PseudoRandomFunction<Key>& pseudoRandomFunction, unsigned tableSize) : 
+                              pseudoRandomFunction_(pseudoRandomFunction) {
+    this->tableSize_ = tableSize;
+                              }
   unsigned operator()(const Key& key, unsigned iteration) const override {
-    return pseudoRandomFunction_(key, iteration);
+    return pseudoRandomFunction_(key);
   }
  private:
   PseudoRandomFunction<Key> pseudoRandomFunction_;

@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <cstdlib>
+#include <ctime>
+
 
 #include "../dispersion-function.h"
 
@@ -13,8 +16,8 @@ class PseudoRandomFunction : public DispersionFunction<Key> {
     this->tableSize_ = tableSize;
   }
   unsigned operator()(const Key& key) const override {
+    // Initialize the seed
     int value = key;
-    srand(value);
     return rand() % this->tableSize_;
   }
 };

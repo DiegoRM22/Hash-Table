@@ -15,7 +15,13 @@ class SumFunction : public DispersionFunction<Key> {
     this->tableSize_ = tableSize;
   }
   unsigned operator()(const Key& key) const override {
-    return key % this->tableSize_;
+    unsigned sum = 0;
+    Key auxKey = key;
+    for (int i = 0; i < sizeof(key); i++) {
+      sum += auxKey % 10;
+      auxKey /= 10;
+    }
+    return sum % this->tableSize_;
   }
 };
 

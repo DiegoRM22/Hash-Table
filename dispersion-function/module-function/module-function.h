@@ -12,7 +12,9 @@ class ModuleFunction : public DispersionFunction<Key> {
     this->tableSize_ = tableSize;
   }
   unsigned operator()(const Key& key) const override {
-    return key % this->tableSize_;
+    std::cout << "ModuleFunction" << std::endl;
+    std::cout << "Table size: " << this->tableSize_ << std::endl;
+    return key.calculatesValue() % this->tableSize_;
   }
 };
 

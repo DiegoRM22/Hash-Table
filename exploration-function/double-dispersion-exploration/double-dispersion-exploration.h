@@ -6,8 +6,10 @@
 template<class Key>
 class DoubleDispersionExploration : public ExplorationFunction<Key> {
  public:
-  DoubleDispersionExploration(const ExplorationFunction<Key>& auxiliarExplorationFunction) : 
-                              auxiliarExplorationFunction_(auxiliarExplorationFunction) {}
+  DoubleDispersionExploration(const ExplorationFunction<Key>& auxiliarExplorationFunction, unsigned tableSize) : 
+                              auxiliarExplorationFunction_(auxiliarExplorationFunction) {
+    this->tableSize_ = tableSize;
+  }
   unsigned operator()(const Key& key, unsigned iteration) const override {
     return iteration * auxiliarExplorationFunction_(key, iteration);
   }
